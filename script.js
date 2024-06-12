@@ -95,8 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         player.classList.add("check-player2");
-        player.classList.remove("check-player2");
-
+        setTimeout(() => { player.classList.remove("check-player2"); }, 2000); 
 
         // Check if player is dead
         if (health <= 0) {

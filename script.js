@@ -95,11 +95,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         player.classList.add("check-player2");
-        setTimeout(() => { player.classList.remove("check-player2"); }, 2000); 
+        setTimeout(() => { player.classList.remove("check-player2"); }, 400); 
 
         // Check if player is dead
         if (health <= 0) {
-            player.classList.add('dead-player');
+            player.classList.add("check-player2");
+            player.classList.add('dead-player2');
         }
     }
 

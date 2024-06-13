@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let player2Movement = { left: false, right: false, up: false, down: false };
 
     const times = [];
-    
+
     var fps;
 
     function refreshLoop() {

@@ -11,53 +11,61 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
 }
-
 #restartButton {
     position: absolute;
-    top: 50px; /* Adjust top position as needed */
-    left: 50%; /* Center horizontally */
+    top: 50px;
+    left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #ffffff; /* Button background color */
+    background-color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-
 .game-container {
     position: relative;
     width: 100%;
     height: 100vh;
     background-color: #000;
 }
-
 .player {
     position: absolute;
-    bottom: 10px; /* Adjust as needed */
+    bottom: 10px;
     width: 50px;
     height: 50px;
     background-color: #fff;
-    border-radius: 0; /* Remove default border-radius */
+    border-radius: 0;
 }
-
 .player.player1 {
     top: 50vh;
-    left: 5vw; /* Position on the left side */
+    left: 5vw;
 }
-
 .player.player2 {
     top: 50vh;
-    right: 5vw; /* Position on the right side */
+    right: 5vw;
 }
-
-.block-player2 {
-    border: 2px solid red;
+.block-player1 {
+    border: 2px solid blue;
     border-radius: 50%;
 }
-
+.block-player2 {
+    border: 2px solid blue;
+    border-radius: 50%;
+}
+.dead-player1 {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid red;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform: rotate(45deg);
+}
 .dead-player2 {
     position: relative;
     width: 0;
@@ -67,16 +75,38 @@ body {
     border-bottom: 60px solid red;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    transform: rotate(45deg); /* Rotate the flag */
+    transform: rotate(45deg);
 }
-
-.check-player2 {
-    bottom: 10px; /* Adjust as needed */
+.check-player1 {
+    bottom: 10px;
     width: 50px;
     height: 50px;
     background-color: #ff0000;
-    border-radius: 0; /* Remove default border-radius */
+    border-radius: 0;
 }
+.check-player2 {
+    bottom: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff0000;
+    border-radius: 0;
+}
+
+.player1-info {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    color: #00ff00;
+    font-size: 16px;
+}
+.player2-info {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: #00ff00;
+    font-size: 16px;
+}
+
 
 .projectile {
     position: absolute;
@@ -84,3 +114,11 @@ body {
     height: 15px;
     background-color: #ff00ff;
 }
+.fps-counter {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #ff00ff;
+    font-size: 16px;
+}
+

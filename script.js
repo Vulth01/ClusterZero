@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let player1Movement = { left: false, right: false, up: false, down: false };
     let player2Movement = { left: false, right: false, up: false, down: false };
 
+    var gameState = '0';
+
     const times = [];
     
     var fps;
@@ -40,15 +42,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     setTimeout(showOverlay, 0);
-    // Example function to show the overlay and restart button after a delay
     function showOverlay() {
-        document.getElementById('overlay').style.display = 'flex';
+        document.getElementById('overlay').style.display = 'flex'; 
     }
+
+    function changeHealthColor(player, color) {
+        document.getElementById(player).style.color = color;
+    }
+    
+    function changeHealthBarColor(player, color) {
+        document.getElementById(player).style.backgroundColor = color;
+    }
+
+
     document.getElementById('restartButton').addEventListener('click', function() {
-        
         window.location.reload();
     });
-
+    function showGameOver(txtGameState) {
+        document.getElementById('gameState').textContent = txtGameState;
+    }
     function movePlayer1() {
         if(player1object.health <= 0 && !player1.classList.contains('dead-player1')){
             player1.classList.add('dead-player1');
@@ -74,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById('player1Health').textContent = player1object.health;
     }
-
     function movePlayer2() {
         if(player2object.health <= 0 && !player2.classList.contains('dead-player2')){
             player2.classList.add('dead-player2');
@@ -100,9 +111,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById('player2Health').textContent = player2object.health;
     }
-
-
-
     function checkCollision(projectile, player) {
         const projectileRect = projectile.getBoundingClientRect();
         const playerRect = player.getBoundingClientRect();
@@ -118,27 +126,43 @@ document.addEventListener("DOMContentLoaded", function() {
     function updatePlayerHealth(player, health) {
         if (player === player1) {
             player1object.health = health;
-            player1.classList.add("check-player1");
-            setTimeout(() => { player1.classList.remove("check-player1"); }, 400);
+            const healthPercentage = (health / playerStartingHealth) * 100;
+            document.getElementById('player1Health').textContent = health;
+            document.getElementById('player1HealthBarFill').style.width = healthPercentage + '%';
+            
+            if (health <= 30) {
+                changeHealthBarColor("player1HealthBarFill", "red");
+                changeHealthColor("player1Health", "red");
+            }
             if (health <= 0) {
-                player1.classList.add("dead-player1");
                 player1object.health = 0;
-            } else {
-                player1.classList.remove("dead-player1"); 
+                showGameOver("Player 2 Wins!");
+
+                player1.classList.add('dead-player1');
+                player1.classList.remove('block-player1');
             }
         } else if (player === player2) {
             player2object.health = health;
-            player2.classList.add("check-player2");
-            setTimeout(() => { player2.classList.remove("check-player2"); }, 400);
+            const healthPercentage = (health / playerStartingHealth) * 100;
+            document.getElementById('player2Health').textContent = health;
+            document.getElementById('player2HealthBarFill').style.width = healthPercentage + '%';
+
+            if (health <= 30) {
+                changeHealthBarColor("player2HealthBarFill", "red");
+                changeHealthColor("player2Health", "red");
+            }
+
             if (health <= 0) {
-                player2.classList.add("dead-player2");
                 player2object.health = 0;
+                showGameOver("Player 1 Wins!");
+
+                player2.classList.add('dead-player2');
+                player2.classList.remove('block-player2');
             } else {
-                player2.classList.remove("dead-player2");
+                player2.classList.remove('dead-player2');
             }
         }
     }
-
 
 
     function shootProjectilePlayer1() {

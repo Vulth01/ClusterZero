@@ -2,61 +2,76 @@ body {
     margin: 0;
     overflow: hidden;
 }
+
 #overlay {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 9999;
 }
-#restartButton {
+
+#restartButtonContainer {
     position: absolute;
-    top: 50px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    transform: scale(0.75);
+}
+#restartButton {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #ffffff;
+    background-image: linear-gradient(135deg, #4444ff 0%, #ff4444 100%);;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* GAME BACKGROUND */
 .game-container {
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: #000;
-}
+    background-image: linear-gradient(45deg, #004953 0%, #2E5058 100%);
+    background-size: 20px 20px;
+}   
+
+/* PLAYER STATES/INFO */
 .player {
     position: absolute;
     bottom: 10px;
     width: 50px;
     height: 50px;
-    background-color: #fff;
     border-radius: 0;
 }
 .player.player1 {
+    background-image: linear-gradient(45deg, #4444ff 0%, #ffffff 50%, #44ff44 100%);
+    background-image: linear-gradient();
+    background-color: #0000ff;
     top: 50vh;
-    left: 5vw;
+    left: 10vw;
 }
 .player.player2 {
+    background-image: linear-gradient(135deg, #ff0000 0%, #ffffff 50%, #ff00ff 100%);
+    background-color: #ff0000;
     top: 50vh;
-    right: 5vw;
+    right: 10vw;
 }
 .block-player1 {
     border: 2px solid blue;
     border-radius: 50%;
 }
 .block-player2 {
-    border: 2px solid blue;
+    border: 2px solid red;
     border-radius: 50%;
 }
 .dead-player1 {
-    position: relative;
+    position: fixed;
     width: 0;
     height: 0;
     border-left: 30px solid transparent;
@@ -67,16 +82,14 @@ body {
     transform: rotate(45deg);
 }
 .dead-player2 {
-    position: relative;
-    width: 0;
-    height: 0;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 60px solid red;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    position: fixed;
+    background-image: linear-gradient(135deg, #ff0000 0%, #550000 100%);
+    background-color: #ff0000;
+    top: 50vh;
+    right: 10vw;
     transform: rotate(45deg);
 }
+
 .check-player1 {
     bottom: 10px;
     width: 50px;

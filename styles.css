@@ -3,34 +3,6 @@ body {
     overflow: hidden;
 }
 
-#overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    z-index: 9999;
-}
-
-#restartButtonContainer {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    transform: scale(0.75);
-}
-#restartButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-image: linear-gradient(135deg, #4444ff 0%, #ff4444 100%);;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 /* GAME BACKGROUND */
 .game-container {
@@ -50,14 +22,16 @@ body {
     border-radius: 0;
 }
 .player.player1 {
-    background-image: linear-gradient(45deg, #4444ff 0%, #ffffff 50%, #44ff44 100%);
+    background-image: linear-gradient(45deg, #4444ff 0%, #00ffff 50%, #44ff44 100%);
     background-image: linear-gradient();
     background-color: #0000ff;
     top: 50vh;
     left: 10vw;
 }
+
 .player.player2 {
-    background-image: linear-gradient(135deg, #ff0000 0%, #ffffff 50%, #ff00ff 100%);
+    position: absolute;
+    background-image: linear-gradient(135deg, #ff0000 0%, #ffff44 50%, #ff00ff 100%);
     background-color: #ff0000;
     top: 50vh;
     right: 10vw;
@@ -66,28 +40,29 @@ body {
     border: 2px solid blue;
     border-radius: 50%;
 }
+.player.player1.dead-player1 {
+    display: none;
+}
+.dead-player1 {
+    background-color: #ccc !important;
+}
+
 .block-player2 {
     border: 2px solid red;
     border-radius: 50%;
 }
-.dead-player1 {
-    position: fixed;
-    width: 0;
-    height: 0;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 60px solid red;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transform: rotate(45deg);
+
+
+.player.player2.dead-player2 {
+    display: none;
 }
+
 .dead-player2 {
-    position: fixed;
-    background-image: linear-gradient(135deg, #ff0000 0%, #550000 100%);
-    background-color: #ff0000;
-    top: 50vh;
-    right: 10vw;
-    transform: rotate(45deg);
+    position: absolute;
+    bottom: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
 }
 
 .check-player1 {
@@ -105,31 +80,114 @@ body {
     border-radius: 0;
 }
 
-.player1-info {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    color: #00ff00;
-    font-size: 16px;
-}
-.player2-info {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    color: #00ff00;
-    font-size: 16px;
-}
 
+
+/* EXTRA */
 .projectile {
     position: absolute;
     width: 5px;
     height: 15px;
     background-color: #ff00ff;
 }
+
+
+/* UI ELEMENTS */
+#overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 9999;
+}
+/* FPS */
 .fps-counter {
     position: absolute;
     top: 10px;
     left: 10px;
     color: #ff00ff;
     font-size: 16px;
+}
+
+
+/* RESTART */
+#restartButtonContainer {
+    position: absolute;
+    top: calc(20px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+#restartButton {
+    padding: 5px 16px;
+    font-size: 16px;
+    left: 50%;
+    background-image: linear-gradient(135deg, #4444ff 0%, #ff4444 100%);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* GAME OVER */
+.gameOver-Text {   
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    color: #ffffff;
+    font-size: 16px;
+    transform: translateX(-50%);
+}
+
+/* PLAYER INFO */
+.player1-health-bar {
+    position: fixed;
+    top: 50px;
+    left: 15%;
+    width: 400px; 
+    height: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.player1-health-bar-fill {
+    height: 100%;
+    background-color: #00ff00;
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+}
+.player1-info {
+    position: fixed;
+    top: 10px;
+    left: 15%;
+    color: #44aaff;
+    font-size: 24px;
+    transform: translateX(50%)
+}
+
+.player2-health-bar {
+    position: fixed;
+    top: 50px;
+    right: 15%;
+    width: 400px; 
+    height: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.player2-health-bar-fill {
+    height: 100%;
+    background-color: #00ff00;
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+}
+.player2-info {
+    position: fixed;
+    top: 10px;
+    right: 15%;
+    color: #ff6600;
+    font-size: 24px;
+    transform: translateX(-50%)
 }

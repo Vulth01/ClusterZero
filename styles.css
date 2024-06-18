@@ -120,7 +120,6 @@ body {
     font-size: 16px;
 }
 
-
 .projectile {
     position: absolute;
     width: 5px;
@@ -134,4 +133,3 @@ body {
     color: #ff00ff;
     font-size: 16px;
 }
-

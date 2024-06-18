@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let player2Movement = { left: false, right: false, up: false, down: false };
 
     const times = [];
-
+    
     var fps;
 
     function refreshLoop() {
@@ -37,6 +37,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     refreshLoop();
+
+    
+    setTimeout(showOverlay, 0);
+    // Example function to show the overlay and restart button after a delay
+    function showOverlay() {
+        document.getElementById('overlay').style.display = 'flex';
+    }
+    document.getElementById('restartButton').addEventListener('click', function() {
+        
+        window.location.reload();
+    });
 
     function movePlayer1() {
         if(player1object.health <= 0 && !player1.classList.contains('dead-player1')){
@@ -66,11 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function movePlayer2() {
         if(player2object.health <= 0 && !player2.classList.contains('dead-player2')){
-            player2LastKnownLeft = player2.offsetLeft;
-            player2LastKnownTop = player2.offsetTop;
             player2.classList.add('dead-player2');
-            player2.style.left = player2LastKnownLeft + 'px';
-            player2.style.top = player2LastKnownTop + 'px';
         }
         
         if(player2.offsetLeft < gameWidth/2 && player2object.health > 0)
@@ -115,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => { player1.classList.remove("check-player1"); }, 400);
             if (health <= 0) {
                 player1.classList.add("dead-player1");
-                player1object.health = 0; 
+                player1object.health = 0;
             } else {
                 player1.classList.remove("dead-player1"); 
             }
